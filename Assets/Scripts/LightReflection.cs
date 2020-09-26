@@ -64,7 +64,7 @@ public class LightReflection : MonoBehaviour
         if (wonGame && !sentRequest)
         {
             //Debug.Log("Victory");
-            scoreManager.ScoreUpdater(100);
+            scoreManager.ScoreUpdater(100, "mirror-game", "anshal");
             sentRequest = true;
         }
     }

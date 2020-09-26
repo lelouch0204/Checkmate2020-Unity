@@ -37,7 +37,7 @@ public class wincheck : MonoBehaviour
     }
     void Win()
     {
-        scoreManager.ScoreUpdater(100);
+        scoreManager.ScoreUpdater(100, "checkers", "anshal");
         anim["flip"].time = anim["flip"].length;
         anim["flip"].speed = -1;
         anim.Play("flip");

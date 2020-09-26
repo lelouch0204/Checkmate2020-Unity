@@ -18,7 +18,7 @@ public class PathgameWinCheck : MonoBehaviour
     {
         if(other.gameObject.CompareTag("Navigator"))
         {
-            scoreManager.ScoreUpdater(navigator.score);
+            scoreManager.ScoreUpdater(navigator.score, "path-game", "anshal");
             Debug.Log("won");
             pathmover.SetActive(false);
         }

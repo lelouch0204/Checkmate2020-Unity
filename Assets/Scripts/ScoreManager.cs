@@ -13,6 +13,7 @@ public class ScoreManager : MonoBehaviour
     private string buildUrl = "https://checkmate2020.herokuapp.com/game";
     public int currentScore;
     public Text scoreText;
+    public int minScore;
 
     void Start()
     {
@@ -23,6 +24,7 @@ public class ScoreManager : MonoBehaviour
         StartCoroutine(postRequest(scoreUrl, JSONScore));*/
         currentScore = 0;
         TransmitToUI();
+        minScore = -50;
     }
 
     public IEnumerator postRequest(string scoreUrl, string JSONScore)
@@ -45,18 +47,25 @@ public class ScoreManager : MonoBehaviour
     public class PlayerScore
     {
         public int score;
+        public string game;
+        public string secret;
     }
 
-    public void ScoreUpdater(int scoreToAdd)
+    public void ScoreUpdater(int scoreToAdd, string gameName, string secret)
     {
-        PlayerScore playerScore = new PlayerScore();
-        playerScore.score = scoreToAdd;
-        Debug.Log(JsonUtility.ToJson(playerScore));
-        string JSONScore = JsonUtility.ToJson(playerScore);
-        StartCoroutine(postRequest(scoreUrl, JSONScore));
-        currentScore += scoreToAdd;
-        Debug.Log(currentScore);
-        TransmitToUI();
+        if (currentScore > minScore || (currentScore + scoreToAdd) > currentScore)
+        {
+            PlayerScore playerScore = new PlayerScore();
+            playerScore.score = scoreToAdd;
+            playerScore.game = gameName;
+            playerScore.secret = secret;
+            Debug.Log(JsonUtility.ToJson(playerScore));
+            string JSONScore = JsonUtility.ToJson(playerScore);
+            StartCoroutine(postRequest(scoreUrl, JSONScore));
+            currentScore += scoreToAdd;
+            Debug.Log(currentScore);
+            TransmitToUI();
+        }
     }
 
     void TransmitToUI()

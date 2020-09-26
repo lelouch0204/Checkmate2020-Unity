@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class BulletDamage : MonoBehaviour
 {
-    public int bulletDamage = 5;
+    public int bulletDamage = 1;
     GameObject player;
     PlayerHealth health;
     ScoreManager scoreManager;
@@ -26,7 +26,7 @@ public class BulletDamage : MonoBehaviour
     {
         if(collision.gameObject.CompareTag("Player"))
         {
-            scoreManager.ScoreUpdater(-5);
+            scoreManager.ScoreUpdater(-bulletDamage, "enemy-ai", "anshal");
             Debug.Log("Collided");
         }
     }

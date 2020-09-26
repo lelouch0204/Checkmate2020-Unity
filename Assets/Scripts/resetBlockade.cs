@@ -16,7 +16,7 @@ public class resetBlockade : MonoBehaviour
 
     public void destroyBlokcade()
     {
-        scoreManager.ScoreUpdater(-20);
+        scoreManager.ScoreUpdater(-20, "checkers", "anshal");
         blockade.SetActive(false);
         reset.triggered = false;
         flipper.SetActive(false);

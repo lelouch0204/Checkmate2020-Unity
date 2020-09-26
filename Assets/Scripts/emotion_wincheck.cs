@@ -29,7 +29,7 @@ public class emotion_wincheck : MonoBehaviour
 		{
             check = 1;
             Debug.Log("Win");
-            scoreManager.ScoreUpdater(100);
+            scoreManager.ScoreUpdater(100, "mask-room", "anshal");
             for (int i = 0; i < 4; i++)
             {
                 faces[i].tag = "blank";

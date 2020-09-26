@@ -20,14 +20,14 @@ public class Counter : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(score==100)
+        if(script.score==100)
         {
             if(won==false)
             {
                 Debug.Log("you won");
                 won = true;
                 finalScore = script.score;
-                scoreManager.ScoreUpdater(finalScore);
+                scoreManager.ScoreUpdater(finalScore, "bounce-game", "anshal");
             }
         }
     }

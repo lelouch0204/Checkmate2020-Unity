@@ -30,7 +30,7 @@ public class CubeArray : MonoBehaviour {
                 {
 					//Position in array is always setted
 					withoutIntersection = false;
-                    Debug.Log("this");
+                    //Debug.Log("this");
 				} 
                 else 
                 {
@@ -44,17 +44,14 @@ public class CubeArray : MonoBehaviour {
 				withoutIntersection = false; 
 			}
 		}
-
-        if(!withoutIntersection)
-            Debug.Log(withoutIntersection);
-        //printArray();
+		
 		return withoutIntersection; 
 	}
 
 
 	public void checkForFullLine()
     {
-        Debug.Log("bruh");
+        //Debug.Log("bruh");
 
 		//Check if there is any full line 
 		List<int> isFullLine = new List<int> (); 

@@ -9,6 +9,8 @@ public class Movement : MonoBehaviour {
 	float time;
     Vector3 secondDir;
 	CubeArray cA;
+	public Camera tetrisCamera;
+	private bool horizontalMove = true;
     public bool gameOver = false;
 
 	//The actual group which can rotate and will move down
@@ -39,18 +41,22 @@ public class Movement : MonoBehaviour {
 			time = 0;
             //defaultMove();
             move(Vector3.down);
-            move(secondDir);
+            if (horizontalMove)
+            {
+	            move(secondDir);
+            }
         }
-		checkForInput (); 
+		if(tetrisCamera.enabled)
+			checkForInput (); 
 	}
 
 	void checkForInput()
     {
-		if (Input.GetKeyDown (KeyCode.R)) 
+		if (Input.GetKeyDown (KeyCode.Mouse0)) 
         {
 			actualGroup.GetComponent<Rotation>().rotateRight (false); 
 		} 
-        else if (Input.GetKeyDown (KeyCode.L)) 
+        else if (Input.GetKeyDown (KeyCode.Mouse1)) 
         {
 			actualGroup.GetComponent<Rotation>().rotateLeft (false); 
 		}
@@ -75,11 +81,13 @@ public class Movement : MonoBehaviour {
 
 	void move(Vector3 pos)
     {
-		if (actualGroup != null) 
-        {
+		if (actualGroup != null)
+		{
+			horizontalMove = true;
 			actualGroup.transform.position += pos; 
-			if (!cA.updateArrayBool ()) 
-            {
+			if (!cA.updateArrayBool ())
+			{
+				horizontalMove = false;
 				actualGroup.transform.position -= pos; 
 				gameObject.GetComponent<ManageAudio> ().playCantMove (); 
 				if(pos == Vector3.down)
@@ -120,7 +128,7 @@ public class Movement : MonoBehaviour {
             if (!cA.updateArrayBool())
             {
                 hScore.gameOver = true;
-                scoreManager.ScoreUpdater(hScore.points);
+                scoreManager.ScoreUpdater(hScore.points, "tetris", "anshal");
                 print("GAME OVER!!!");
 
                 //Application.LoadLevel (Application.loadedLevelName); 

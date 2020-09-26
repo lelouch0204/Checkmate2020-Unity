@@ -32,10 +32,17 @@ public class shoot : MonoBehaviour
                 }
                 if(hit.transform.tag == "Slider")
                 {
-                    Debug.Log("hi");
+                    //Debug.Log("hi");
                     hit.transform.GetComponent<SliderController>().sliderEngaged = true;
                 }
-
+                if (hit.transform.tag == "submit")
+                {
+                    hit.transform.GetComponent<riddlecheck>().answercheck();
+                }
+                if (hit.transform.tag == "input")
+                {
+                    hit.transform.GetComponent<numberchange>().changenumber();
+                }
             }
         }
     }
